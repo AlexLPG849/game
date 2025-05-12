@@ -10,8 +10,14 @@
           "id": "key1",
           "name": "Key",
           "description": "A small rusty key."
+        },
+        {
+          "id": "hammer",
+          "name": "Hammer",
+          "description": "A big hammer is for hammering."
         }
       ]
+      
     },
     "library": {
       "name": "Library",

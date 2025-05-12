@@ -18,12 +18,12 @@ public class Game {
         System.out.println("Welcome to the Text Adventure Game!");
         Room currentRoom = rooms.get(player.getCurrentRoomId());
         System.out.println(currentRoom.getLongDescription());
-
-        while (true) {
+        boolean gameOver = false;
+        while (!gameOver) {
             
             System.out.print("> ");
             String input = scanner.nextLine();
-            commandParser.parse(input, player, rooms);
+            gameOver = commandParser.parse(input, player, rooms);
         }
     }
 }
