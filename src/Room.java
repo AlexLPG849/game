@@ -7,6 +7,7 @@ public class Room {
     private String description;
     private Map<String, String> exits; // direction → roomId
     private List<Item> items;
+    private List<NPC> npcs;
 
     public Room(String id, String name, String description, Map<String, String> exits, List<Item> items) {
         this.id = id;
@@ -14,8 +15,21 @@ public class Room {
         this.description = description;
         this.exits = exits;
         this.items = items;
+        this.npcs = npcs;
     }
 
+    public List<NPC> getNpcs() {
+        return npcs;
+    }
+
+    public void addNpc(NPC npc) {
+        npcs.add(npc);
+    }
+
+    public void removeNpc(NPC npc){
+        npcs.remove(npc);
+    }
+    
     public String getId() {
         return id;
     }
