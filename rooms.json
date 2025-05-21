@@ -3,7 +3,8 @@
       "name": "Entrance Hall",
       "description": "You are in a grand entrance hall. A door leads north.",
       "exits": {
-        "north": "library"
+        "north": "library",
+        "east": "test"
       },
       "items": [
         {
@@ -26,6 +27,20 @@
         "south": "entrance"
       },
       "items": []
+    },
+    "test": {
+      "name": "DevRoom",
+      "description": "You've somehow entered this room, it's blank.",
+      "exits": {
+        "west": "entrance"
+      },
+      "items": [
+        {
+          "id": "Devitem",
+          "name": "Dev Object",
+          "description": "An odd object, doesn't seem from this world"
+        }
+      ]
     }
   }
   
