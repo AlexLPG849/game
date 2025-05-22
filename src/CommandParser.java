@@ -1,7 +1,8 @@
+import java.util.List;
 import java.util.Map;
 
 public class CommandParser {
-    public boolean parse(String input, Player player, Map<String, Room> rooms) {
+    public boolean parse(String input, Player player, Map<String, Room> rooms, List<NPC> npcs, List<SubstancePlantCode> plants){
         String[] words = input.trim().toLowerCase().split("\\s+");
         if (words.length == 0) {
             System.out.println("Please enter a command.");
@@ -32,17 +33,34 @@ public class CommandParser {
             case "look":
                 Room currentRoom = rooms.get(player.getCurrentRoomId());
                 System.out.println(currentRoom.getLongDescription());
-                return false;
+
+                if (words.length > 1) {
+                    String itemName = words[1];
+                    boolean itemFound = false;
+                        for (Item item : currentRoom.getItems()) {
+                            if (item.getName().equalsIgnoreCase(itemName)) {
+                                itemFound = true;
+                                    System.out.println("You see: " + item.getDescription());
+                    break;
+            }
+        }
+                    if (!itemFound) {
+                        System.out.println("There is no " + itemName + " here.");
+        }
+    }
+    return false;
+
             case "inventory":
                 if (player.getInventory().isEmpty()) {
                     System.out.println("Your inventory is empty.");
                 } else {
                     System.out.println("You are carrying:");
                     for (Item item : player.getInventory()) {
-                        System.out.println("- " + item.getName());
-                    }
+                    System.out.println("- " + item.getName() + ": " + item.getDescription());
                 }
-                return false;
+            }
+    return false;
+
             case "take":
                 if (words.length < 2) {
                     System.out.println("Take what?");
@@ -91,10 +109,10 @@ public class CommandParser {
                 System.out.println("Available commands: go [direction], look, take [item], drop [item], inventory, help, quit");
                 return false;
             case "quit":
-                System.out.println("See ya!");
+                System.out.println("Yeah yeah, later man.");
                 return true;
             default:
-                System.out.println("I don't understand that command.");
+                System.out.println("Explain it again. I don't follow.");
                 return false;
         }
     }

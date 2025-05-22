@@ -1,31 +1,47 @@
 {
-    "entrance": {
-      "name": "Entrance Hall",
-      "description": "You are in a grand entrance hall. A door leads north.",
-      "exits": {
-        "north": "library"
-      },
-      "items": [
-        {
-          "id": "key1",
-          "name": "Key",
-          "description": "A small rusty key."
-        },
-        {
-          "id": "hammer",
-          "name": "Hammer",
-          "description": "A big hammer is for hammering."
-        }
-      ]
-      
+  "entrance": {
+    "name": "Walter White's House",
+    "description": "You wake up from an exceptionally long nap on the couch that you do not remember taking.",
+    "exits": {
+      "north": "frontdoor",
+      "west": "backyard",
+      "east": "garage"
     },
-    "library": {
-      "name": "Library",
-      "description": "Books line the walls. It's quiet.",
-      "exits": {
-        "south": "entrance"
+    "items": [
+      {
+        "id": "key1",
+        "name": "Key",
+        "description": "A small rusty key for some sort of door."
       },
-      "items": []
-    }
+      {
+        "id": "paper1",
+        "name": "Paper",
+        "description": "How to make money: 1. Create drugs 2. Sell drugs 3. Get money and be rich."
+      }
+    ]
+  },
+  "garage": {
+    "name": "Garage",
+    "description": "A dark room with a 2003 Pontiac Aztek.",
+    "exits": {
+      "west": "entrance"
+    },
+    "items": []
+  },
+  "backyard": {
+    "name": "Backyard",
+    "description": "A dusty patch of grass and a rickety lawn chair.",
+    "exits": {
+      "east": "entrance"
+    },
+    "items": []
+  },
+  "frontdoor": {
+    "name": "Front Door",
+    "description": "The front porch with a view of the street. A rusty mailbox sits here.",
+    "exits": {
+      "south": "entrance"
+    },
+    "items": []
   }
-  
+}

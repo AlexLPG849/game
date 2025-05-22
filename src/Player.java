@@ -2,8 +2,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
+    private int money;
     private String currentRoomId;
     private List<Item> inventory;
+
+    public void addMoney(int amount) { money += amount; }
+    public void spendMoney(int amount) { money -= amount; }
+    public int getMoney() { return money; }
+
 
     public Player(String startingRoomId) {
         this.currentRoomId = startingRoomId;
