@@ -1,16 +1,31 @@
-public class NPC {
-    private String name;
-    private int satisfaction;
-    private String preferredSubstance;
-    private String currentLocation;
-    private int daysSinceLastDeal;
+import DialogueStuff.DialogueNode;
 
-    public NPC(String name, String preferredSubstance, String startLocation) {
-        this.name = name;
+    public class NPC {
+        private String name;
+        private int satisfaction;
+        private String preferredSubstance;
+        private String currentLocation;
+        private int daysSinceLastDeal;
+        private String startingNode;
+        private DialogueNode dialogueNode;
+
+    public NPC(String npcName, String preferredSubstance, String startLocation, String startingNode) {
+        this.name = npcName;
         this.preferredSubstance = preferredSubstance;
         this.currentLocation = startLocation;
+        this.startingNode = startingNode;
         this.satisfaction = 0;
         this.daysSinceLastDeal = 0;
+    }
+
+    public NPC(String npcName, DialogueNode startingNode) {
+        this.name = npcName;
+        this.dialogueNode = startingNode;
+        this.satisfaction = 0;
+        this.daysSinceLastDeal = 0;
+        this.preferredSubstance = "";
+        this.currentLocation = "";
+        this.startingNode = "";
     }
 
     public void updateSatisfaction(boolean dealtToday) {
@@ -47,5 +62,9 @@ public class NPC {
 
     public int getSatisfaction() {
         return satisfaction;
+    }
+
+    public DialogueNode getDialogueNode() {
+        return dialogueNode;
     }
 }

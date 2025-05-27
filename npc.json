@@ -1,5 +1,32 @@
-{
-    // npc stuff here  
-    
+[
+  {
+    "name": "Bob",
+    "preferredSubstance": "Purple Daddy",
+    "location": "/placeholder/"
+  },
+  {
+    "name": "Jesse",
+    "preferredSubstance": "Blue Sky",
+    "location": "rv"
+  },
+  {
+    "name": "Gus",
+    "preferredSubstance": "Purple Daddy",
+    "location": "/placeholder/"
+  },
+  {
+    "name": "Vinayak",
+    "preferredSubstance": "Purple Daddy",
+    "location": "/placeholder/"
+  },
+  {
+    "name": "DEA",
+    "preferredSubstance": "Purple Daddy",
+    "location": "/placeholder/"
+  },
+  {
+    "name": "Sheriff Hank",
+    "preferredSubstance": "Purple Daddy",
+    "location": "/placeholder/"
   }
-  
+]

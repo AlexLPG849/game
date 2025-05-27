@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class CommandParser {
     public boolean parse(String input, Player player, Map<String, Room> rooms, List<NPC> npcs, List<SubstancePlantCode> plants){
@@ -105,8 +106,58 @@ public class CommandParser {
                     }
                 }
                 return false;
+                case "deal":
+                    Room room = rooms.get(player.getCurrentRoomId());
+                    List<NPC> presentNpcs = room.getNpcs();
+
+                    if (presentNpcs.isEmpty()) {
+                        System.out.println("There's no one here to deal to.");
+                            return false;
+                    }
+
+                    boolean dealt = false;
+                        for (NPC npc : presentNpcs) {
+                            for (Item item : player.getInventory()) {
+                                if (item.getName().equalsIgnoreCase(npc.getPreferredSubstance())) {
+                                    int payout = 100 + new Random().nextInt(npc.getSatisfaction() + 150);
+                                    player.addMoney(payout);
+                                    player.removeItem(item);
+                                    npc.updateSatisfaction(true);
+                                    System.out.println(npc.getName() + " buys " + item.getName() + " for $" + payout + ".");
+                                    dealt = true;
+                    break;
+                            }
+                        }
+                    }
+
+                    if (!dealt) {
+                        System.out.println("You have nothing these people want.");
+                        for (NPC npc : presentNpcs) {
+                            npc.updateSatisfaction(false);
+                            }
+                    }
+
+    return false;
+
             case "help":
-                System.out.println("Available commands: go [direction], look, take [item], drop [item], inventory, help, quit");
+                System.out.println("Available commands:");
+                System.out.println("- go [direction]: Move to a different room (e.g., go north).");
+                System.out.println("- look: Look around the room.");
+                System.out.println("- look [item]: Look at a specific item in the room.");
+                System.out.println("- take [item]: Pick up an item.");
+                System.out.println("- drop [item]: Drop an item from your inventory.");
+                System.out.println("- inventory: Show what you're carrying.");
+                System.out.println("- money: Show how much money you have.");
+                System.out.println("- deal: Attempt to deal drugs to any NPCs in the room.");
+                System.out.println("- plant [type]: Plant a substance to grow (at home only).");
+                System.out.println("- harvest: Harvest grown substances if they're ready.");
+                System.out.println("- phone: Check where dealable NPCs are and their mood.");
+                System.out.println("- help: Show this help menu.");
+                System.out.println("- quit: Exit the game.");
+                return false;
+
+            case "money":
+                System.out.println("You have $" + player.getMoney());
                 return false;
             case "quit":
                 System.out.println("Yeah yeah, later man.");

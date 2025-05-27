@@ -30,35 +30,34 @@ public class Game {
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to Schedule 2!");
+        System.out.println("Welcome to Schedule 2! This is a game where you make money! Type 'help' to see all commands.");
         Room currentRoom = rooms.get(player.getCurrentRoomId());
         System.out.println(currentRoom.getLongDescription());
         boolean gameOver = false;
         while (!gameOver) {
-            
             System.out.print("> ");
             String input = scanner.nextLine();
             gameOver = commandParser.parse(input, player, rooms, npcs, plants);
 
-        } turnCount++;
+            turnCount++;
+                for (SubstancePlantCode plant : plants) {
+                    plant.grow();
+                }
 
-        for (SubstancePlantCode plant : plants) {
-            plant.grow();
-        }
+                for (NPC npc : npcs) {
+                    npc.updateSatisfaction(false); 
+                }
 
-        for (NPC npc : npcs) {
-            npc.updateSatisfaction(false);
-        }
+                for (NPC npc : npcs) {
+                    List<String> roomKeys = new ArrayList<>(rooms.keySet());
+                    String randomRoomId = roomKeys.get(new Random().nextInt(roomKeys.size()));
+                    npc.setCurrentLocation(randomRoomId);
+                }
 
-        for (NPC npc : npcs) {
-            List<String> roomKeys = new ArrayList<>(rooms.keySet());
-            String randomRoomId = roomKeys.get(new Random().nextInt(roomKeys.size()));
-            npc.setCurrentLocation(randomRoomId);
-        }
-
-        if (player.getMoney() >= 100_000) {
-            System.out.println("You made $100,000 and became the One Who Knocks.");
-            gameOver = true;
-        }
+                if (player.getMoney() >= 10000) {
+                    System.out.println("You made $10,000 and became the One Who Knocks.");
+                    break;
+                }
+            } 
     }
 }
