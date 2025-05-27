@@ -14,8 +14,10 @@ public class NpcLoader {
                 String name = npcObj.get("name").getAsString();
                 String preferredSubstance = npcObj.get("preferredSubstance").getAsString();
                 String location = npcObj.get("location").getAsString();
+                String startingNode = npcObj.get("startingNode").getAsString();
 
-                NPC npc = new NPC(name, preferredSubstance, location);
+
+                NPC npc = new NPC(name, preferredSubstance, location, startingNode);
                 npcs.add(npc);
             }
         } catch (Exception e) {

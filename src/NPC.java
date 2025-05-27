@@ -67,4 +67,8 @@ import DialogueStuff.DialogueNode;
     public DialogueNode getDialogueNode() {
         return dialogueNode;
     }
+
+    public String getStartingNode(){
+        return startingNode;
+    }
 }
