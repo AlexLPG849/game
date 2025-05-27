@@ -1,3 +1,7 @@
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
 public class InventorySystem implements Serializable {
     private Map<Substance, Integer> stock;
 
